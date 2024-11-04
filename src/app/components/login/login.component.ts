@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent {
 
   public loginForm: FormGroup;
 
-  constructor (private authService : AuthService) {
+  constructor (private authService : AuthService, private router:Router ) {
     this.loginForm= new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
@@ -24,6 +25,7 @@ export class LoginComponent {
     this.authService.doLogin(this.loginForm.value).subscribe(
       value=>{
         localStorage.setItem("token", value.token);
+        this.router.navigateByUrl("/dashboard");
         alert('success');
       },
       error=>{
