@@ -1,0 +1,92 @@
+<h2>Create Student Details</h2>
+
+<form [formGroup]="studentForm">
+    <label for="">Name:</label>
+    <input type="text" formControlName="name"><br>
+    <label for="">Gender:</label>&nbsp;
+    <input type="radio" name="gender" formControlName="gender" value="male">
+    <label for="">Male</label>&nbsp;
+    <input type="radio" name="gender" formControlName="gender" value="female">
+    <label for="">Female</label>
+    <br>
+    <label for="">Mobile:</label>
+    <input type="number" formControlName="mobile"><br>
+    <label for="">Email:</label>
+    <input type="mail" formControlName="email"><br>
+    <label for="">Batch:</label>
+    <input type="date" formControlName="batch"><br>
+
+    <div formGroupName="address">
+        <label for="">Address:</label><br>
+        <label for="">City:</label>
+        <input type="text" formControlName="city"><br>
+        <label for="">Mandal:</label>
+        <input type="text" formControlName="mandal"><br>
+        <label for="">District:</label>
+        <input type="text" formControlName="district"><br>
+        <label for="">State:</label>
+        <input type="text" formControlName="state"><br>
+        <label for="">Pincode:</label>
+        <input type="number" formControlName="pincode"><br>
+
+    </div>
+
+    <label for="">Education:</label>
+    <button (click)="addEducation()">Add Education</button>
+    <div formArrayName="education">
+        <div *ngFor="let edu of educationFormArray.controls; let i=index">
+          <div formGroupName="{{i}}">
+            <h2>Education{{i+1}}:</h2>
+            <br>
+            <label for="">Qualification:</label>
+            <input type="text" formControlName="qualification"><br>
+            <label for="">Year:</label>
+            <input type="number" formControlName="year"><br>
+            <label for="">Percentage:</label>
+            <input type="number" formControlName="percentage"><br>
+
+            <button (click)="delete(i)">Delete</button>
+
+          </div>  
+
+        </div>
+
+    </div><br>
+
+    <div formGroupName="company">
+        <label for="">Company:</label><br>
+        <label for="">Name:</label>
+        <input type="text" formControlName="name"><br>
+        <label for="">Location:</label>
+        <input type="text" formControlName="location"><br>
+        <label for="">Package:</label>
+        <input type="number" formControlName="package"><br>
+        <label for="">Offer Date:</label>
+        <input type="date" formControlName="offerDate"><br>
+
+    </div>
+
+    <label for="">Source Type:</label> &nbsp;
+    <input type="radio" name="sourceType" formControlName="sourceType" value="Direct" required>
+    <label for="">Direct</label>&nbsp;
+    <input type="radio" name="sourceType" formControlName="sourceType" value="Refer" required>
+    <label for="">Refer</label>&nbsp;
+    <br>
+
+    <div *ngIf="studentForm.get('sourceType')?.value ==='Direct'">
+        <label for="">SourceForm:</label>&nbsp;
+        <input type="radio" name="SourceForm" formControlName="'SourceForm" value="social media">
+        <label for="">Social Media</label>&nbsp;
+        <input type="radio" name="=SourceForm" formControlName="social media" value="office">
+        <label for="">Office</label>&nbsp;
+    </div>
+
+    <div *ngIf="studentForm.get('sourceType')?.value ==='Refer'">
+        <label for="">Referral Name:</label>
+        <input type="text" formControlName="referralName" required>
+
+    </div><br>
+
+    <button (click)="submit()">submit</button>
+
+</form>
