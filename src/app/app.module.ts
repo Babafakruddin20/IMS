@@ -9,13 +9,17 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotfoundComponent } from './components/page-notfound/page-notfound.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './services/interceptors/token.interceptor';
+import { CreatestudentComponent } from './components/createstudent/createstudent.component';
+import { AllstudentsComponent } from './components/allstudents/allstudents.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    PageNotfoundComponent
+    PageNotfoundComponent,
+    CreatestudentComponent,
+    AllstudentsComponent
   ],
   imports: [
     BrowserModule,

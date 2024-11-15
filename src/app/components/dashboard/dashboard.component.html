@@ -1,3 +1,16 @@
-<p>dashboard works!</p>
 
-<button (click)="logout()">logout</button>
+<div class="parent flex-center">
+    <div class="left text-center">
+        <p routerLink="createstudent">Create Student</p><br>
+        <p routerLink="allstudents">All Students</p><br>
+        <hr>
+        <button (click)="logout()">logout</button>
+        <hr>
+    </div>
+    <div class="right">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>
+
+
