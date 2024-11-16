@@ -31,6 +31,10 @@ export class CreatestudentService {
     return this.httpClient.get(this.baseUrl+"?sortBy="+column+"&order="+order);
   }
 
+  getPagedstudents(page:number):Observable<any>{
+    return this.httpClient.get(this.baseUrl+"?limit=10&page="+page);
+  }
+
 
 
 
