@@ -14,4 +14,25 @@ export class CreatestudentService {
   addstudentsDetails(data:any):Observable<any>{
     return this.httpClient.post(this.baseUrl,data);
   }
+
+  getstudents():Observable<any>{
+    return this.httpClient.get(this.baseUrl);
+  }
+
+  deletestudents(id:string):Observable<any>{
+    return this.httpClient.delete(this.baseUrl+'/'+id);
+  }
+
+  getFilteredstudents(term:string):Observable<any>{
+    return this.httpClient.get(this.baseUrl+"?filter="+term);
+  }
+
+  getSortedstudents(column:string, order:string):Observable<any>{
+    return this.httpClient.get(this.baseUrl+"?sortBy="+column+"&order="+order);
+  }
+
+
+
+
+
 }

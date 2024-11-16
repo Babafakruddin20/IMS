@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotfoundComponent } from './components/page-notfound/page-notfound.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './services/interceptors/token.interceptor';
 import { CreatestudentComponent } from './components/createstudent/createstudent.component';
 import { AllstudentsComponent } from './components/allstudents/allstudents.component';
@@ -26,6 +26,7 @@ import { AllstudentsComponent } from './components/allstudents/allstudents.compo
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
