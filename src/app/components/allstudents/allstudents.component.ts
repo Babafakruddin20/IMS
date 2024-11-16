@@ -47,4 +47,15 @@ export class AllstudentsComponent {
         }
       )
     }
+
+    sort(){
+      this.studentService.getSortedstudents(this.column,this.order).subscribe(
+        (data:any)=>{
+          this.students=data;
+        },
+        (err:any)=>{
+          alert(err.error);
+        }
+      )
+    }
 }
