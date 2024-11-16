@@ -1,1 +1,56 @@
-<p>allstudents works!</p>
+
+<input type="text" [(ngModel)]="term" (keyup)="search()" placeholder="search">
+
+
+
+
+
+
+
+
+<table border="3">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Batch</th>
+            <th>Address</th>
+            <th>Company</th>
+            <th>Source</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+           <td>{{student.id}}</td> 
+           <td>{{student.name}}</td>
+           <td>{{student.gender}}</td>
+           <td>{{student.mobile}}</td>
+           <td>{{student.email}}</td>
+           <td>{{student.batch|date:'yyyy-MMMM-dd'}}</td>
+           <td>{{student.address?.city}},
+                {{student.address?.mandal}},
+                {{student.address?.district}},
+                {{student.address?.state}},
+                {{student.address?.pincode}}
+            </td>
+
+            <td>
+                {{student.company?.name}}
+                {{student.company?.location}}
+                {{student.company?.package}}
+                {{student.company?.offerDate}}
+            </td>
+            <td>{{student.sourceType}}</td>
+            <td>
+                <button>View</button>
+                <button>Edit</button>
+                <button (click)="delete(student.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

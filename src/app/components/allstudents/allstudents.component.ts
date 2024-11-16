@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CreatestudentService } from 'src/app/services/createstudent.service';
 
 @Component({
   selector: 'app-allstudents',
@@ -6,5 +7,44 @@ import { Component } from '@angular/core';
   styleUrls: ['./allstudents.component.css']
 })
 export class AllstudentsComponent {
+    students:any=[];
+    term:string="";
+    column:string="";
+    order:string="";
 
+
+
+    constructor(private studentService:CreatestudentService){
+      studentService.getstudents().subscribe(
+        (data:any)=>{
+          this.students=data;
+        },
+        (err:any)=>{
+          alert('internal server error')
+        }
+      )
+    }
+
+    delete(id:string){
+      this.studentService.deletestudents(id).subscribe(
+        (data:any)=>{
+          alert('deleted successfully');
+          location.reload();
+        },
+        (err:any)=>{
+          alert(err.error);
+        }
+      )
+    }
+
+    search(){
+      this.studentService.getFilteredstudents(this.term).subscribe(
+        (data:any)=>{
+          this.students=data;
+        },
+        (err:any)=>{
+          alert('internal server error');
+        }
+      )
+    }
 }

@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard], children:[
     {path:'createstudent',component:CreatestudentComponent},
-    {path:'allstuents',component:AllstudentsComponent}
+    {path:'allstudents',component:AllstudentsComponent}
   ]},
   {path:' ',component:LoginComponent},
   {path:'**',component:PageNotfoundComponent},
