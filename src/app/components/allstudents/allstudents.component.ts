@@ -11,6 +11,7 @@ export class AllstudentsComponent {
     term:string="";
     column:string="";
     order:string="";
+    public page:number=1;
 
 
 
@@ -55,6 +56,17 @@ export class AllstudentsComponent {
         },
         (err:any)=>{
           alert(err.error);
+        }
+      )
+    }
+
+    pagination(){
+      this.studentService.getPagedstudents(this.page).subscribe(
+        (data:any)=>{
+          this.students=data;
+        },
+        (err:any)=>{
+          console.log("internal server error");
         }
       )
     }
