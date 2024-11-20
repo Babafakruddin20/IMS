@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreatestudentService } from 'src/app/services/createstudent.service';
 
 @Component({
@@ -12,17 +12,17 @@ export class CreatestudentComponent {
     students:any=[];
    
     public studentForm:FormGroup=new FormGroup({
-      name:new FormControl(),
-      gender:new FormControl(),
-      mobile:new FormControl(),
-      email:new FormControl(),
-      batch:new FormControl(),
+      name:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
+      gender:new FormControl('',[Validators.required]),
+      mobile:new FormControl('',[Validators.required,Validators.minLength(6000000000),Validators.maxLength(999999999)]),
+      email:new FormControl('',[Validators.required, Validators.email]),
+      batch:new FormControl('',[Validators.required]),
       address:new FormGroup({
         city:new FormControl(),
         mandal:new FormControl(),
-        district:new FormControl(),
+        district:new FormControl('',[Validators.required]),
         state:new FormControl(),
-        pincode:new FormControl(),
+        pincode:new FormControl('',[Validators.required,Validators.min(500000),Validators.max(599999)]),
       }),
       education: new FormArray([]),
 
@@ -43,7 +43,7 @@ export class CreatestudentComponent {
         new FormGroup({
           qualification:new FormControl(),
           year:new FormControl(),
-          percentage:new FormControl(),
+          percentage:new FormControl('',[Validators.required, Validators.min(0), Validators.max(100)]),
         })
       )
     }
@@ -68,14 +68,20 @@ export class CreatestudentComponent {
     }
 
     submit(){
+
+      this.studentForm.markAllAsTouched();
+      
       console.log(this.studentForm.value);
-      this.createstudentService.addstudentsDetails(this.studentForm.value).subscribe(
-        (data:any)=>{
-          alert('created successfully');
-        },
-        (err:any)=>{
-          alert('err.errpr');
-        }
-      )
+      if(this.studentForm.valid){
+        this.createstudentService.addstudentsDetails(this.studentForm.value).subscribe(
+          (data:any)=>{
+            alert('created successfully');
+          },
+          (err:any)=>{
+            alert('err.error');
+          }
+        )
+      }
+      
     }
 }
