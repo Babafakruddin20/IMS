@@ -1,0 +1,62 @@
+<h1>Student Details </h1>
+<div *ngIf="student">
+    
+    <p>Name: {{student.name}}</p>
+    <p>Gender: {{ student.gender }}</p>
+    <p>Mobile: {{ student.mobile }}</p>
+    <p>Email: {{ student.email }}</p>
+    <p>Batch: {{student.batch |date:'yyyy-MMM-dd' }}</p>
+    <p>Address:<br>
+                {{student.address?.city}},<br>
+                {{student.address?.mandal}},<br>
+                {{student.address?.district}},<br>
+                {{student.address?.state}},<br>
+                {{student.address?.pincode}}
+    </p>
+    <p *ngFor="let education of student.education">
+      Education Details:
+      {{education.qualification}},
+      {{education.year}},
+      {{education.percentage | percentage}}
+    </p>
+
+    <!-- or -->
+
+    <!-- <h3>Education Information</h3>
+    <table border="3">
+      <thead>
+        <tr>
+          <th>Qualification</th>
+          <th>Year</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let education of student.education">
+          <td>{{education.qualification}}</td>
+          <td>{{education.year}}</td>
+          <td [ngStyle]="{color:education.percentage > 60 ? 'green':'red'}">{{education.percentage | percentage}}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table> -->
+    
+      <p>Company: {{student.company?.name}},{{student.company?.name}},{{student.company?.location}},
+                  {{student.company?.package | packages}},{{student.company?.offerDate}},            
+      </p>
+      <h4>Source Type:</h4>
+      <p>Source Type:
+        {{student.sourceType}}
+      </p>
+      <p>Source Form:{{student.sourceForm}}</p>
+
+      <!-- or -->
+
+      <!-- <div *ngIf="student.sourceType==='direct'">
+        <p>source Form: {{student.sourceForm}}</p>
+
+      </div>
+      <div *ngIf="student.sourceType==='referral'">
+          <p>SourceForm: {{student.referralName}}</p>
+      </div> -->
+  </div>
