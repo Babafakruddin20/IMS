@@ -19,6 +19,10 @@ export class CreatestudentService {
     return this.httpClient.get(this.baseUrl);
   }
 
+  getstudent(id:string):Observable<any>{
+    return this.httpClient.get(this.baseUrl+'/'+id);
+  }
+
   deletestudents(id:string):Observable<any>{
     return this.httpClient.delete(this.baseUrl+'/'+id);
   }

@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './services/interceptors/token.interceptor';
 import { CreatestudentComponent } from './components/createstudent/createstudent.component';
 import { AllstudentsComponent } from './components/allstudents/allstudents.component';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { PercentagePipe } from './pipes/percentage.pipe';
+import { PackagesPipe } from './pipes/packages.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { AllstudentsComponent } from './components/allstudents/allstudents.compo
     DashboardComponent,
     PageNotfoundComponent,
     CreatestudentComponent,
-    AllstudentsComponent
+    AllstudentsComponent,
+    StudentDetailsComponent,
+    PercentagePipe,
+    PackagesPipe
   ],
   imports: [
     BrowserModule,
