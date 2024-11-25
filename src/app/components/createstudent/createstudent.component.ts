@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CreatestudentService } from 'src/app/services/createstudent.service';
 
 @Component({
@@ -46,9 +47,31 @@ export class CreatestudentComponent {
           percentage:new FormControl('',[Validators.required, Validators.min(0), Validators.max(100)]),
         })
       )
-    }
+    };
 
-    constructor(private createstudentService:CreatestudentService ){
+    // for edit we are taking 
+    public id:string ="";
+
+    constructor(private createstudentService:CreatestudentService , private _activatedRoute:ActivatedRoute){
+
+      // for edit student
+
+      _activatedRoute.params.subscribe(
+        (data:any)=>{
+          this.id = data.id;
+          createstudentService.getstudent(data.id).subscribe(
+            (data:any)=>{
+              for(let item of data.education){
+                this.addEducation();
+              }
+              this.studentForm.patchValue(data)
+            }
+          )
+        }
+      )
+
+
+
       this.studentForm.get('sourceType')?.valueChanges.subscribe(
         (data:any)=>{
           if (data === 'Direct'){
@@ -69,19 +92,36 @@ export class CreatestudentComponent {
 
     submit(){
 
+        // for gender selection only one line markAllAsTouched
       this.studentForm.markAllAsTouched();
       
-      console.log(this.studentForm.value);
-      if(this.studentForm.valid){
-        this.createstudentService.addstudentsDetails(this.studentForm.value).subscribe(
+      // console.log(this.studentForm.value);
+      // if(this.studentForm.valid)
+      if(this.id){
+
+        //edit
+        this.createstudentService.editstudent(this.id, this.studentForm.value).subscribe(
           (data:any)=>{
-            alert('created successfully');
+            alert("Edited Successfully!!!");
           },
           (err:any)=>{
-            alert('err.error');
+            alert("err.error")
           }
         )
       }
-      
+      else{
+        // create
+        this.createstudentService.addstudentsDetails(this.studentForm.value).subscribe(
+          (data:any)=>{
+            alert('created succesfully!!!');
+          },
+          (err:any)=>{
+            alert(err.error);
+          }
+        )
+      }
+      console.log(this.studentForm.value);
     }
+    
+
 }

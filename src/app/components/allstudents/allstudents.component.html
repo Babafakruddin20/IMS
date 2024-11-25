@@ -72,7 +72,7 @@
             <td>{{student.sourceType}}</td>
             <td>
                 <button routerLink="../student-details/{{student.id}}">View</button>
-                <button>Edit</button>
+                <button routerLink="../edit-student/{{student.id}}">Edit</button>
                 <button (click)="delete(student.id)">Delete</button>
             </td>
         </tr>

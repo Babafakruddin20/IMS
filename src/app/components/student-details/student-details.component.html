@@ -13,8 +13,8 @@
                 {{student.address?.state}},<br>
                 {{student.address?.pincode}}
     </p>
-    <p *ngFor="let education of student.education">
-      Education Details:
+    <p *ngFor="let education of student.education; let i=index">
+      
       {{education.qualification}},
       {{education.year}},
       {{education.percentage | percentage}}

@@ -15,6 +15,8 @@ import { StudentDetailsComponent } from './components/student-details/student-de
 import { PercentagePipe } from './pipes/percentage.pipe';
 import { PackagesPipe } from './pipes/packages.pipe';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { PackagesPipe } from './pipes/packages.pipe';
     AllstudentsComponent,
     StudentDetailsComponent,
     PercentagePipe,
-    PackagesPipe
+    PackagesPipe,
+    
+    
   ],
   imports: [
     BrowserModule,

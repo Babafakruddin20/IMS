@@ -23,6 +23,10 @@ export class CreatestudentService {
     return this.httpClient.get(this.baseUrl+'/'+id);
   }
 
+  editstudent(id:string, data:any):Observable<any>{
+    return this.httpClient.put(this.baseUrl+'/'+id,data)
+  }
+
   deletestudents(id:string):Observable<any>{
     return this.httpClient.delete(this.baseUrl+'/'+id);
   }
