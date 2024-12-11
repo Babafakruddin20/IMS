@@ -1,4 +1,4 @@
-
+<!-- in all students for searchimg  -->
 <input type="text" [(ngModel)]="term" (keyup)="search()" placeholder="search">
 
 
@@ -10,11 +10,13 @@
     <option>email</option>
     <option>state</option>
 </select>
+
 <label for="">Order:</label>
 <select [(ngModel)]="order">
     <option value="asc">ascending</option>
     <option value="desc">descending</option>
 </select>
+
 <button (click)="sort()">sort</button>
 
 <label for="">Page:</label>
